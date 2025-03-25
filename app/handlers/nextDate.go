@@ -9,8 +9,6 @@ import (
 	"time"
 )
 
-//const TimeFormat = "20060102"
-
 func checkParam(r *http.Request, param string) (string, error) {
 	resParam := r.URL.Query().Get(param)
 	if len(resParam) == 0 {

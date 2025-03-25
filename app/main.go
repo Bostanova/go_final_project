@@ -11,8 +11,6 @@ import (
 	"path/filepath"
 )
 
-//var DB *repo.DataBase
-
 func init() {
 	// загрузка данных из .env в переменные окружения
 	if err := godotenv.Load(); err != nil {
@@ -44,10 +42,11 @@ func main() {
 
 	// обработчики
 	r.Handle("/*", http.FileServer(http.Dir("./web")))
+
 	r.Get("/api/nextdate", handlers.NextDateHandler)
 	r.Get("/api/tasks", handlers.GetTasksHandler)
+	r.Post("/api/task/done", handlers.TaskDoneHandler)
 	r.HandleFunc("/api/task", handlers.TaskHandler)
-	r.HandleFunc("/api/task/done", handlers.TaskDoneHandler)
 
 	log.Print("Starting the server...")
 	err = http.ListenAndServe(port, r)

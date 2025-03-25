@@ -8,8 +8,6 @@ import (
 	"time"
 )
 
-//const TimeFormat = "20060102"
-
 func getYear(now time.Time, date time.Time) (time.Time, error) {
 	resDate := date.AddDate(1, 0, 0)
 	for !resDate.After(now) {
@@ -40,7 +38,6 @@ func getDay(now time.Time, date time.Time, repeatSlice []string) (time.Time, err
 }
 
 func NextDate(now time.Time, date string, repeat string, taskExist bool) (string, error) {
-	//TODO добавить правило: Если правило не указано, отмеченная выполненной задача будет удаляться из таблицы.
 	var resDate time.Time
 
 	d, err := time.Parse(models.TimeFormat, date)
